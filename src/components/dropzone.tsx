@@ -3,7 +3,6 @@ import { useDropzone } from "react-dropzone";
 
 export const MyDropzone = () => {
   const [dataURL, setDataURL] = useState<string | null>(null);
-  const [downloadURL] = useState<string | null>(null);
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     acceptedFiles.forEach((file: File) => {
@@ -31,33 +30,20 @@ export const MyDropzone = () => {
     <div>
       {dataURL ? (
         <div className="space-y-3">
-          <img src={dataURL} alt="Preview" className="max-w-xs" />
-          <div>
-            {downloadURL ? (
-              <span>Downloaded!</span>
-            ) : (
-              <div className="space-x-4">
-                <a
-                  href={dataURL}
-                  download="downloaded_image.png"
-                  className="px-4 uppercase py-2 tracking-widest outline-none bg-blue-500 text-white rounded"
-                >
-                  Download
-                </a>
-                <button
-                  onClick={() => setDataURL(null)}
-                  className="px-4 uppercase py-2 tracking-widest outline-none bg-red-600 text-white rounded"
-                >
-                  Cancel
-                </button>
-              </div>
-            )}
+          <div className="relative w-72 h-72 overflow-hidden">
+            <img
+              src={dataURL}
+              alt="Preview"
+              className="absolute top-0 left-1/2 transform -translate-x-1/2"
+              style={{ height: "100%", width: "auto", maxWidth: "none" }}
+            />
           </div>
+          <div></div>
         </div>
       ) : (
         <div
           {...getRootProps()}
-          className={`p-14 border border-zinc-900 ${
+          className={`w-72 h-72 border-zinc-900 border flex items-center justify-center p-8 cursor-pointer bg-purple-300 ${
             isDragActive ? "bg-gray-200" : ""
           }`}
         >
