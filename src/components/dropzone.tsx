@@ -1,7 +1,23 @@
 import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 
-export const MyDropzone = () => {
+interface MyDropzoneProps {
+  onImageLoad: () => void;
+  size: number;
+  border: string;
+  boxShadow: string;
+  borderRadius: number;
+  transform: string;
+}
+
+export const MyDropzone = ({
+  onImageLoad,
+  size,
+  boxShadow,
+  borderRadius,
+  transform,
+  border,
+}: MyDropzoneProps) => {
   const [dataURL, setDataURL] = useState<string | null>(null);
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
@@ -29,23 +45,50 @@ export const MyDropzone = () => {
   return (
     <div>
       {dataURL ? (
-        <div className="space-y-3">
-          <div className="relative w-72 h-72 overflow-hidden">
+        <div className="overflow-visible">
+          <div
+            className="relative"
+            style={{
+              width: size,
+              height: size,
+              boxShadow,
+              borderRadius,
+              transform,
+              overflow: "visible",
+              transition: "all 0.2s ease-in-out",
+            }}
+          >
             <img
               src={dataURL}
               alt="Preview"
-              className="absolute top-0 left-1/2 transform -translate-x-1/2"
-              style={{ height: "100%", width: "auto", maxWidth: "none" }}
+              className="absolute inset-0 object-cover"
+              style={{
+                height: size,
+                width: size,
+                maxWidth: "none",
+                borderRadius,
+                border,
+                transition: "all 0.2s ease-in-out",
+              }}
+              onLoad={onImageLoad}
             />
           </div>
-          <div></div>
         </div>
       ) : (
         <div
           {...getRootProps()}
-          className={`w-72 h-72 border-zinc-900 border flex items-center justify-center p-8 cursor-pointer bg-purple-300 ${
-            isDragActive ? "bg-gray-200" : ""
+          className={`border-zinc-900 border flex items-center justify-center p-8 cursor-pointer bg-orange-300 ${
+            isDragActive ? "bg-orange-100" : ""
           }`}
+          style={{
+            width: size,
+            height: size,
+            borderRadius,
+            boxShadow,
+            transform,
+            border,
+            transition: "all 0.3s ease-in-out",
+          }}
         >
           <input {...getInputProps()} />
           {isDragActive ? (
