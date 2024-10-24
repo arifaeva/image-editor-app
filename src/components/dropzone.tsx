@@ -8,6 +8,7 @@ interface MyDropzoneProps {
   boxShadow: string;
   borderRadius: number;
   transform: string;
+  resetImage: boolean;
 }
 
 export const MyDropzone = ({
@@ -17,8 +18,13 @@ export const MyDropzone = ({
   borderRadius,
   transform,
   border,
+  resetImage,
 }: MyDropzoneProps) => {
   const [dataURL, setDataURL] = useState<string | null>(null);
+
+  if (resetImage && dataURL) {
+    setDataURL(null);
+  }
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     acceptedFiles.forEach((file: File) => {
@@ -95,7 +101,7 @@ export const MyDropzone = ({
             <div>Drop the image here...</div>
           ) : (
             <p className="text-center">
-              Drag 'n' drop some files here, or click to select files
+              Drag and drop an image here, or click to choose image
             </p>
           )}
         </div>
