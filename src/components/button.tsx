@@ -3,15 +3,16 @@ import { twMerge } from "tailwind-merge";
 import { tv } from "tailwind-variants";
 
 const buttonStyle = tv({
-  base: "outline-none text-white text-sm rounded-md transition-colors",
+  base: "outline-none text-white text-xs rounded-md transition-colors",
   variants: {
     active: {
-      true: "bg-blue-500",
-      false: "bg-sky-400 hover:bg-blue-500",
+      true: "bg-[#ff683b]",
+      false: "bg-[#3b4883] hover:bg-[#ddd] hover:text-[#202124]",
     },
     size: {
       sm: "h-6 w-6",
       md: "px-2 py-1.5",
+      lg: "h-10 w-10",
     },
   },
   defaultVariants: {
@@ -23,7 +24,7 @@ const buttonStyle = tv({
 interface Props extends React.ComponentPropsWithRef<"button"> {
   children: React.ReactNode;
   active?: boolean;
-  size?: "sm" | "md";
+  size?: "sm" | "md" | "lg";
 }
 
 export const Button = ({

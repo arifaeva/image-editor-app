@@ -12,6 +12,8 @@ export default function HomePage() {
   const [translate, setTranslate] = useState("");
   const [border, setBorder] = useState("");
   const [resetImage, setResetImage] = useState(false);
+  const [backgroundColor, setBackgroundColor] = useState("#ff683b");
+  const [showSecondDropzone, setShowSecondDropzone] = useState(false);
   const imageContainer = useRef<HTMLDivElement>(null);
 
   const handleDownloadSnapshot = () => {
@@ -30,6 +32,13 @@ export default function HomePage() {
     }
   };
 
+  function showOneDropzone() {
+    setShowSecondDropzone(false);
+  }
+  function showTwoDropzone() {
+    setShowSecondDropzone(true);
+  }
+
   function handleImageLoad() {
     setIsImageLoaded(true);
   }
@@ -41,29 +50,29 @@ export default function HomePage() {
     }, 100);
   }
 
-  const increaseSize = () => {
-    setSize((prevSize) => prevSize + 50); // Increase by 10px
-  };
+  // const increaseSize = () => {
+  //   setSize((prevSize) => prevSize + 10); // Increase by 10px
+  // };
 
-  const decreaseSize = () => {
-    setSize((prevSize) => (prevSize > 300 ? prevSize - 50 : prevSize)); // Decrease by 10px, but not less than 10px
-  };
+  // const decreaseSize = () => {
+  //   setSize((prevSize) => (prevSize > 300 ? prevSize - 10 : prevSize)); // Decrease by 10px, but not less than 10px
+  // };
 
-  function resetSize() {
-    setSize(300);
-  }
+  // function resetSize() {
+  //   setSize(300);
+  // }
 
-  function sizeSmall() {
-    setSize(360);
-  }
+  // function sizeSmall() {
+  //   setSize(360);
+  // }
 
-  function sizeMedium() {
-    setSize(400);
-  }
+  // function sizeMedium() {
+  //   setSize(400);
+  // }
 
-  function sizeLarge() {
-    setSize(430);
-  }
+  // function sizeLarge() {
+  //   setSize(430);
+  // }
 
   function noRounded() {
     setBorderRadius(0);
@@ -170,40 +179,152 @@ export default function HomePage() {
     setTranslate("translateX(50%) translateY(25%)");
   }
 
+  function changeToBlack() {
+    setBackgroundColor("#202124");
+  }
+  function changeToOrange() {
+    setBackgroundColor("#ff683b");
+  }
+  // function changeToBlue() {
+  //   setBackgroundColor("#2596be");
+  // }
+  function changeToRed() {
+    setBackgroundColor("#ba544b");
+  }
+  function changeToCream() {
+    setBackgroundColor("#eae1d8");
+  }
+  function changeToYellow() {
+    setBackgroundColor("#fbb14e");
+  }
+  function changeToLavender() {
+    setBackgroundColor("#6695f7");
+  }
+
   return (
-    <div className="h-screen w-full flex gap-3 p-6 bg-zinc-600">
-      <div className="bg-sky-500 w-[20%] flex items-center justify-center rounded-lg gap-1">
-        <Button
-          onClick={handleDownloadSnapshot}
-          className=""
-          disabled={!isImageLoaded}
+    <div className="h-screen w-full flex justify-between gap-8 p-6 bg-[#3b4883]">
+      <div className="bg-[#202124] w-[20%] p-8 flex flex-col justify-between rounded-xl gap-1 drop-shadow-2xl">
+        <div className="space-y-4">
+          <div className="space-y-2">
+            <h1>Background color :</h1>
+            <div className="flex-wrap flex gap-1.5">
+              <Button
+                onClick={changeToBlack}
+                size="lg"
+                children={undefined}
+                className="bg-[#202124] hover:bg-[#202124] border border-[#ddd]"
+              ></Button>
+
+              <Button
+                onClick={changeToRed}
+                size="lg"
+                children={undefined}
+                className="bg-[#ba544b] hover:bg-[#ba544b] border border-[#ddd]"
+              ></Button>
+              <Button
+                onClick={changeToOrange}
+                size="lg"
+                children={undefined}
+                className="bg-[#ff683b] hover:bg-[#ff683b] border border-[#ddd]"
+              ></Button>
+              <Button
+                onClick={changeToYellow}
+                size="lg"
+                children={undefined}
+                className="bg-[#f0be49] hover:bg-[#f0be49] border border-[#ddd]"
+              ></Button>
+              <Button
+                onClick={changeToLavender}
+                size="lg"
+                children={undefined}
+                className="bg-[#6695f7] hover:bg-[#6695f7] border border-[#ddd]"
+              ></Button>
+              {/* <Button
+              onClick={changeToBlue}
+              size="lg"
+              children={undefined}
+              className="bg-[#2596be] hover:bg-[#2596be] border border-[#ddd]"
+            ></Button> */}
+
+              <Button
+                onClick={changeToCream}
+                size="lg"
+                children={undefined}
+                className="bg-[#eae1d8] hover:bg-[#eae1d8] border border-[#ddd]"
+              ></Button>
+            </div>
+          </div>
+          <div className="space-y-2">
+            <h1>Images :</h1>
+            <div className="flex flex-wrap gap-1.5">
+              <Button
+                onClick={showOneDropzone}
+                active={showSecondDropzone === false}
+                size="lg"
+              >
+                1
+              </Button>
+              <Button
+                onClick={showTwoDropzone}
+                active={showSecondDropzone === true}
+                size="sm"
+                className="h-10 w-10"
+              >
+                2
+              </Button>
+            </div>
+          </div>
+        </div>
+        <div className="flex-wrap flex gap-1.5 items-center justify-center">
+          <Button
+            onClick={handleDownloadSnapshot}
+            className=""
+            disabled={!isImageLoaded}
+          >
+            Download
+          </Button>
+          <Button onClick={handleResetImage}>Reset Image</Button>
+        </div>
+      </div>
+      <div className="flex items-center justify-center w-[60%] p-12">
+        <div
+          ref={imageContainer}
+          style={{ backgroundColor }}
+          className="w-full h-full flex justify-center items-center rounded-xl overflow-hidden"
         >
-          Download
-        </Button>
-        <Button onClick={handleResetImage}>Reset Image</Button>
+          <div className="flex gap-4">
+            <MyDropzone
+              onImageLoad={handleImageLoad}
+              size={size}
+              boxShadow={boxShadow}
+              borderRadius={borderRadius}
+              transform={`${rotate} ${translate}`}
+              border={border}
+              resetImage={resetImage}
+              // Pass transform prop
+            />
+            {showSecondDropzone && (
+              <MyDropzone
+                onImageLoad={handleImageLoad}
+                // Customize or reuse properties as needed
+                size={size}
+                boxShadow={boxShadow}
+                borderRadius={borderRadius}
+                transform={`${rotate} ${translate}`}
+                border={border}
+                resetImage={resetImage}
+                // Pass transform prop
+              />
+            )}
+          </div>
+        </div>
       </div>
 
-      <div
-        ref={imageContainer}
-        className="bg-orange-400 w-[60%] h-full flex justify-center items-center rounded-lg overflow-hidden"
-      >
-        <MyDropzone
-          onImageLoad={handleImageLoad}
-          size={size}
-          boxShadow={boxShadow}
-          borderRadius={borderRadius}
-          transform={`${rotate} ${translate}`}
-          border={border}
-          resetImage={resetImage}
-          // Pass transform prop
-        />
-      </div>
-
-      <div className="bg-sky-500 w-[20%] h-full space-y-4 p-4 rounded-lg  overflow-scroll">
-        <div className="space-y-1">
+      <div className="bg-[#202124] w-[20%] p-8 h-full space-y-4 rounded-xl drop-shadow-2xl">
+        <div className="space-y-2">
           <h1>Image size :</h1>
-          <div className="flex-wrap flex gap-1">
-            <Button onClick={resetSize}>Reset Size</Button>
+          <div className="flex-wrap flex gap-1.5">
+            {/* <Button onClick={resetSize}>Reset Size</Button>
             <Button onClick={sizeSmall} active={size === 360}>
               Small
             </Button>
@@ -214,45 +335,53 @@ export default function HomePage() {
               Large
             </Button>
             <Button onClick={decreaseSize}>Decrease Size</Button>
-            <Button onClick={increaseSize}>Increase Size</Button>
+            <Button onClick={increaseSize}>Increase Size</Button> */}
+            <input
+              type="range"
+              min="300" // Adjust min and max values as needed
+              max="500"
+              value={size}
+              onChange={(e) => setSize(Number(e.target.value))}
+              className="w-full slider"
+            />
           </div>
         </div>
 
         <div className="space-y-2">
-          <h1>Border radius :</h1>
-          <div className="flex-wrap flex gap-1">
+          <h1>Rounded corner :</h1>
+          <div className="flex-wrap flex gap-1.5">
             <Button onClick={noRounded}>No Rounded</Button>
             <Button onClick={borderRadiusSmall} active={borderRadius === 12}>
-              Rounded Small
+              Small
             </Button>
             <Button onClick={borderRadiusMedium} active={borderRadius === 24}>
-              Rounded Medium
+              Medium
             </Button>
             <Button onClick={borderRadiusLarge} active={borderRadius === 36}>
-              Rounded Large
+              Large
             </Button>
           </div>
         </div>
 
         <div className="space-y-2">
           <h1>Rotate image :</h1>
-          <div className="flex-wrap flex gap-1">
+          <div className="flex-wrap flex gap-1.5">
             <Button onClick={rotate0}>No Rotate</Button>
             <Button onClick={rotate30} active={rotate === "rotate(30deg)"}>
-              Rotate 30
+              30&deg;
             </Button>
             <Button onClick={rotate45} active={rotate === "rotate(45deg)"}>
-              Rotate 45
+              45&deg;
             </Button>
             <Button onClick={rotate60} active={rotate === "rotate(60deg)"}>
-              Rotate 60
+              60&deg;
             </Button>
           </div>
         </div>
 
         <div className="space-y-2">
           <h1>Box Shadow :</h1>
-          <div className="flex-wrap flex gap-1">
+          <div className="flex-wrap flex gap-1.5">
             <Button onClick={noShadow}>None</Button>
             <Button
               onClick={lightBoxShadow}

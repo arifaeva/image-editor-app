@@ -61,7 +61,7 @@ export const MyDropzone = ({
               borderRadius,
               transform,
               overflow: "visible",
-              transition: "all 0.2s ease-in-out",
+              transition: "all 0.2s ease",
             }}
           >
             <img
@@ -74,7 +74,7 @@ export const MyDropzone = ({
                 maxWidth: "none",
                 borderRadius,
                 border,
-                transition: "all 0.2s ease-in-out",
+                transition: "all 0.2s ease",
               }}
               onLoad={onImageLoad}
             />
@@ -83,8 +83,10 @@ export const MyDropzone = ({
       ) : (
         <div
           {...getRootProps()}
-          className={`border-zinc-900 border flex items-center justify-center p-8 cursor-pointer bg-orange-300 ${
-            isDragActive ? "bg-orange-100" : ""
+          className={`border border-[#ddd] rounded-xl flex items-center justify-center p-8 cursor-pointer bg-[#202124]${
+            isDragActive
+              ? "bg-[#202124] border border-[#ddd] border-dashed"
+              : ""
           }`}
           style={{
             width: size,
@@ -93,14 +95,14 @@ export const MyDropzone = ({
             boxShadow,
             transform,
             border,
-            transition: "all 0.3s ease-in-out",
+            transition: "all 0.3s ease",
           }}
         >
           <input {...getInputProps()} />
           {isDragActive ? (
             <div>Drop the image here...</div>
           ) : (
-            <p className="text-center">
+            <p className="text-center text-[#ddd]">
               Drag and drop an image here, or click to choose image
             </p>
           )}

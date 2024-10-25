@@ -7,3 +7,58 @@
     @apply font-semibold text-white text-base leading-tight;
   }
 }
+
+.slider-container {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.slider-container {
+  width: 100%;
+  margin: 20px 0;
+}
+
+/* Style for the slider */
+.slider {
+  -webkit-appearance: none; /* Remove default styling */
+  appearance: none; /* Remove default styling */
+  width: 100%; /* Full width */
+  height: 8px; /* Track height */
+  border-radius: 4px; /* Rounded track */
+  background: #ddd; /* Default track color */
+  outline: none; /* Remove outline */
+}
+
+/* Track color for webkit browsers */
+.slider::-webkit-slider-runnable-track {
+  height: 8px; /* Track height */
+  border-radius: 4px; /* Rounded track */
+  background: #3b4883; /* Custom track color */
+}
+
+/* Thumb color */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Remove default thumb */
+  appearance: none; /* Remove default thumb */
+  height: 14px; /* Thumb height */
+  width: 14px; /* Thumb width */
+  background: #ff683b; /* Custom thumb color */
+  border-radius: 50%; /* Rounded thumb */
+  cursor: pointer; /* Cursor on hover */
+  margin-top: -3px; /* Center the thumb */
+}
+
+/* For Firefox */
+.slider::-moz-range-thumb {
+  height: 20px; /* Thumb height */
+  width: 20px; /* Thumb width */
+  background: #ff683b; /* Custom thumb color */
+  border-radius: 50%; /* Rounded thumb */
+}
+
+/* For Firefox */
+.slider::-moz-range-track {
+  height: 8px; /* Track height */
+  background: #3b4883; /* Custom track color */
+  border-radius: 4px; /* Rounded track */
+}
