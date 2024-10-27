@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 
 interface MyDropzoneProps {
@@ -47,6 +47,25 @@ export const MyDropzone = ({
       "image/*": [],
     },
   });
+
+  useEffect(() => {
+    const eyeball = (event: MouseEvent) => {
+      const eyes = document.querySelectorAll(".eye");
+      eyes.forEach((eye) => {
+        const rect = eye.getBoundingClientRect();
+        const x = rect.left + eye.clientWidth / 2;
+        const y = rect.top + eye.clientHeight / 2;
+        const radian = Math.atan2(event.pageX - x, event.pageY - y);
+        const rot = radian * (180 / Math.PI) * -1 + 270;
+        (eye as HTMLElement).style.transform = `rotate(${rot}deg)`;
+      });
+    };
+
+    document.addEventListener("mousemove", eyeball);
+    return () => {
+      document.removeEventListener("mousemove", eyeball);
+    };
+  }, []);
 
   return (
     <div>
@@ -98,14 +117,23 @@ export const MyDropzone = ({
             transition: "all 0.3s ease",
           }}
         >
-          <input {...getInputProps()} />
-          {isDragActive ? (
-            <div>Drop the image here...</div>
-          ) : (
-            <p className="text-center text-[#ddd]">
-              Drag and drop an image here, or click to choose image
-            </p>
-          )}
+          <div className="flex flex-col items-center gap-2">
+            <div className="face">
+              <div className="eyes">
+                <div className="eye"></div>
+                <div className="eye"></div>
+              </div>
+            </div>
+
+            <input {...getInputProps()} />
+            {isDragActive ? (
+              <div>Drop the image here...</div>
+            ) : (
+              <p className="text-center text-[#ddd] text-sm">
+                Drag and drop an image here, or click to choose image
+              </p>
+            )}
+          </div>
         </div>
       )}
     </div>

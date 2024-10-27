@@ -5,7 +5,7 @@ import domtoimage from "dom-to-image";
 
 export default function HomePage() {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
-  const [size, setSize] = useState(300);
+  const [size, setSize] = useState(280);
   const [borderRadius, setBorderRadius] = useState(0);
   const [boxShadow, setBoxShadow] = useState("");
   const [rotate, setRotate] = useState("");
