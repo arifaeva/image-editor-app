@@ -12,7 +12,8 @@ export default function HomePage() {
   const [translate, setTranslate] = useState("");
   const [border, setBorder] = useState("");
   const [resetImage, setResetImage] = useState(false);
-  const [backgroundColor, setBackgroundColor] = useState("#ff683b");
+  const [backgroundColor, setBackgroundColor] = useState("#202124");
+  const [backgroundImage, setBackgroundImage] = useState<string | null>(null);
   const [showSecondDropzone, setShowSecondDropzone] = useState(false);
   const imageContainer = useRef<HTMLDivElement>(null);
 
@@ -30,6 +31,50 @@ export default function HomePage() {
           console.error("Error capturing image:", error);
         });
     }
+  };
+
+  const handleBackgroundChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setBackgroundImage(imageUrl);
+    }
+  };
+
+  const splashBg = () => {
+    setBackgroundImage("/assets/sssplatter.svg");
+  };
+
+  const repeatBg = () => {
+    setBackgroundImage("/assets/rrrepeat.svg");
+  };
+
+  const twinkleBg = () => {
+    setBackgroundImage("/assets/tttwinkle.svg");
+  };
+
+  const oscillateBg = () => {
+    setBackgroundImage("/assets/oooscillate.svg");
+  };
+
+  const scribbleBg = () => {
+    setBackgroundImage("/assets/ssscribble.svg");
+  };
+
+  const spiralBg = () => {
+    setBackgroundImage("/assets/ssspiral.svg");
+  };
+
+  const organizeBg = () => {
+    setBackgroundImage("/assets/ooorganize.svg");
+  };
+
+  const replicateBg = () => {
+    setBackgroundImage("/assets/rrreplicate.svg");
+  };
+
+  const rainbowBg = () => {
+    setBackgroundImage("/assets/rrrainbow.svg");
   };
 
   function showOneDropzone() {
@@ -50,30 +95,6 @@ export default function HomePage() {
     }, 100);
   }
 
-  // const increaseSize = () => {
-  //   setSize((prevSize) => prevSize + 10); // Increase by 10px
-  // };
-
-  // const decreaseSize = () => {
-  //   setSize((prevSize) => (prevSize > 300 ? prevSize - 10 : prevSize)); // Decrease by 10px, but not less than 10px
-  // };
-
-  // function resetSize() {
-  //   setSize(300);
-  // }
-
-  // function sizeSmall() {
-  //   setSize(360);
-  // }
-
-  // function sizeMedium() {
-  //   setSize(400);
-  // }
-
-  // function sizeLarge() {
-  //   setSize(430);
-  // }
-
   function noRounded() {
     setBorderRadius(0);
   }
@@ -86,6 +107,9 @@ export default function HomePage() {
   }
   function borderRadiusLarge() {
     setBorderRadius(36);
+  }
+  function borderRadiusFull() {
+    setBorderRadius(999999);
   }
 
   function rotate0() {
@@ -118,6 +142,22 @@ export default function HomePage() {
 
   function largeBoxShadow() {
     setBoxShadow("10px 10px black");
+  }
+
+  function cardRightBoxShadow() {
+    setBoxShadow(
+      "rgba(249, 249, 249, 0.4) 5px 5px, rgba(249, 249, 249, 0.3) 10px 10px, rgba(249, 249, 249, 0.2) 15px 15px, rgba(249, 249, 249, 0.1) 20px 20px, rgba(249, 249, 249, 0.05) 25px 25px"
+    );
+  }
+  function cardLeftBoxShadow() {
+    setBoxShadow(
+      "rgba(249, 249, 249, 0.4) -5px 5px, rgba(249, 249, 249, 0.3) -10px 10px, rgba(249, 249, 249, 0.2) -15px 15px, rgba(249, 249, 249, 0.1) -20px 20px, rgba(249, 249, 249, 0.05) -25px 25px"
+    );
+  }
+  function cardBottomBoxShadow() {
+    setBoxShadow(
+      "rgba(249, 249, 249, 0.4) 0px 5px, rgba(249, 249, 249, 0.3) 0px 10px, rgba(249, 249, 249, 0.2) 0px 15px, rgba(249, 249, 249, 0.1) 0px 20px, rgba(249, 249, 249, 0.05) 0px 25px"
+    );
   }
 
   function noBorder() {
@@ -189,10 +229,10 @@ export default function HomePage() {
   //   setBackgroundColor("#2596be");
   // }
   function changeToRed() {
-    setBackgroundColor("#ba544b");
+    setBackgroundColor("#dd4444");
   }
   function changeToCream() {
-    setBackgroundColor("#eae1d8");
+    setBackgroundColor("#ffffff");
   }
   function changeToYellow() {
     setBackgroundColor("#fbb14e");
@@ -206,7 +246,7 @@ export default function HomePage() {
       <div className="bg-[#202124] w-[20%] p-8 flex flex-col justify-between rounded-xl gap-1 drop-shadow-2xl">
         <div className="space-y-4">
           <div className="space-y-2">
-            <h1>Background color :</h1>
+            <h1>Background color:</h1>
             <div className="flex-wrap flex gap-1.5">
               <Button
                 onClick={changeToBlack}
@@ -219,7 +259,7 @@ export default function HomePage() {
                 onClick={changeToRed}
                 size="lg"
                 children={undefined}
-                className="bg-[#ba544b] hover:bg-[#ba544b] border border-[#ddd]"
+                className="bg-[#dd4444] hover:bg-[#dd4444] border border-[#ddd]"
               ></Button>
               <Button
                 onClick={changeToOrange}
@@ -239,21 +279,137 @@ export default function HomePage() {
                 children={undefined}
                 className="bg-[#6695f7] hover:bg-[#6695f7] border border-[#ddd]"
               ></Button>
-              {/* <Button
-              onClick={changeToBlue}
-              size="lg"
-              children={undefined}
-              className="bg-[#2596be] hover:bg-[#2596be] border border-[#ddd]"
-            ></Button> */}
 
               <Button
                 onClick={changeToCream}
                 size="lg"
                 children={undefined}
-                className="bg-[#eae1d8] hover:bg-[#eae1d8] border border-[#ddd]"
+                className="bg-[#ffffff] hover:bg-[#ffffff] border border-[#ddd]"
               ></Button>
             </div>
           </div>
+          <div className="space-y-2">
+            <h1>Background image:</h1>
+            <div className="flex-wrap flex gap-1.5">
+              <Button
+                onClick={organizeBg}
+                style={{
+                  backgroundImage: `url("/assets/ooorganize.svg")`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+                size="lg"
+                children={undefined}
+                className="bg-transparent hover:bg-transparent border border-[#ddd]"
+              ></Button>
+              <Button
+                onClick={replicateBg}
+                style={{
+                  backgroundImage: `url("/assets/rrreplicate.svg")`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+                size="lg"
+                children={undefined}
+                className="bg-transparent hover:bg-transparent border border-[#ddd]"
+              ></Button>
+              <Button
+                onClick={rainbowBg}
+                style={{
+                  backgroundImage: `url("/assets/rrrainbow.svg")`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+                size="lg"
+                children={undefined}
+                className="bg-transparent hover:bg-transparent border border-[#ddd]"
+              ></Button>
+              <Button
+                onClick={scribbleBg}
+                style={{
+                  backgroundImage: `url("/assets/ssscribble.svg")`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+                size="lg"
+                children={undefined}
+                className="bg-transparent hover:bg-transparent border border-[#ddd]"
+              ></Button>
+              <Button
+                onClick={splashBg}
+                style={{
+                  backgroundImage: `url("/assets/sssplatter.svg")`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+                size="lg"
+                children={undefined}
+                className="bg-transparent hover:bg-transparent border border-[#ddd]"
+              ></Button>
+              <Button
+                onClick={repeatBg}
+                style={{
+                  backgroundImage: `url("/assets/rrrepeat.svg")`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+                size="lg"
+                children={undefined}
+                className="bg-transparent hover:bg-transparent border border-[#ddd]"
+              ></Button>
+
+              <Button
+                onClick={oscillateBg}
+                style={{
+                  backgroundImage: `url("/assets/oooscillate.svg")`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+                size="lg"
+                children={undefined}
+                className="bg-transparent hover:bg-transparent border border-[#ddd]"
+              ></Button>
+
+              <Button
+                onClick={twinkleBg}
+                style={{
+                  backgroundImage: `url("/assets/tttwinkle.svg")`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+                size="lg"
+                children={undefined}
+                className="bg-transparent hover:bg-transparent border border-[#ddd]"
+              ></Button>
+
+              <Button
+                onClick={spiralBg}
+                style={{
+                  backgroundImage: `url("/assets/ssspiral.svg")`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+                size="lg"
+                children={undefined}
+                className="bg-transparent hover:bg-transparent border border-[#ddd]"
+              ></Button>
+            </div>
+            <Button
+              onClick={() =>
+                document.getElementById("background-input")?.click()
+              }
+            >
+              Choose file...
+            </Button>
+            <input
+              id="background-input"
+              type="file"
+              accept="image/*"
+              onChange={handleBackgroundChange}
+              style={{ display: "none" }}
+            />
+          </div>
+
           <div className="space-y-2">
             <h1>Images :</h1>
             <div className="flex flex-wrap gap-1.5">
@@ -274,6 +430,24 @@ export default function HomePage() {
               </Button>
             </div>
           </div>
+          <div className="space-y-2">
+            <h1>Layered Card Effect :</h1>
+            <div className="flex-wrap flex gap-1.5">
+              <Button onClick={noShadow}>None</Button>
+
+              <Button onClick={cardLeftBoxShadow}>Left</Button>
+              <Button onClick={cardBottomBoxShadow}>Bottom</Button>
+              <Button
+                onClick={cardRightBoxShadow}
+                active={
+                  boxShadow ===
+                  "rgba(249, 249, 249, 0.4) 5px 5px, rgba(249, 249, 249, 0.3) 10px 10px, rgba(249, 249, 249, 0.2) 15px 15px, rgba(249, 249, 249, 0.1) 20px 20px, rgba(249, 249, 249, 0.05) 25px 25px"
+                }
+              >
+                Right
+              </Button>
+            </div>
+          </div>
         </div>
         <div className="flex-wrap flex gap-1.5 items-center justify-center">
           <Button
@@ -289,7 +463,14 @@ export default function HomePage() {
       <div className="flex items-center justify-center w-[60%] p-12">
         <div
           ref={imageContainer}
-          style={{ backgroundColor }}
+          style={{
+            backgroundColor,
+            backgroundImage: backgroundImage
+              ? `url(${backgroundImage})`
+              : "none",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
           className="w-full h-full flex justify-center items-center rounded-xl overflow-hidden"
         >
           <div className="flex gap-4">
@@ -324,18 +505,6 @@ export default function HomePage() {
         <div className="space-y-2">
           <h1>Image size :</h1>
           <div className="flex-wrap flex gap-1.5">
-            {/* <Button onClick={resetSize}>Reset Size</Button>
-            <Button onClick={sizeSmall} active={size === 360}>
-              Small
-            </Button>
-            <Button onClick={sizeMedium} active={size === 400}>
-              Medium
-            </Button>
-            <Button onClick={sizeLarge} active={size === 430}>
-              Large
-            </Button>
-            <Button onClick={decreaseSize}>Decrease Size</Button>
-            <Button onClick={increaseSize}>Increase Size</Button> */}
             <input
               type="range"
               min="300" // Adjust min and max values as needed
@@ -359,6 +528,9 @@ export default function HomePage() {
             </Button>
             <Button onClick={borderRadiusLarge} active={borderRadius === 36}>
               Large
+            </Button>
+            <Button onClick={borderRadiusFull} active={borderRadius === 999999}>
+              Full
             </Button>
           </div>
         </div>
