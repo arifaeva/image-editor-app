@@ -33,49 +33,17 @@ export default function HomePage() {
     }
   };
 
-  const handleBackgroundChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  function handleBackgroundChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
       setBackgroundImage(imageUrl);
     }
-  };
+  }
 
-  const splashBg = () => {
-    setBackgroundImage("/assets/sssplatter.svg");
-  };
-
-  const repeatBg = () => {
-    setBackgroundImage("/assets/rrrepeat.svg");
-  };
-
-  const twinkleBg = () => {
-    setBackgroundImage("/assets/tttwinkle.svg");
-  };
-
-  const oscillateBg = () => {
-    setBackgroundImage("/assets/oooscillate.svg");
-  };
-
-  const scribbleBg = () => {
-    setBackgroundImage("/assets/ssscribble.svg");
-  };
-
-  const spiralBg = () => {
-    setBackgroundImage("/assets/ssspiral.svg");
-  };
-
-  const organizeBg = () => {
-    setBackgroundImage("/assets/ooorganize.svg");
-  };
-
-  const replicateBg = () => {
-    setBackgroundImage("/assets/rrreplicate.svg");
-  };
-
-  const rainbowBg = () => {
-    setBackgroundImage("/assets/rrrainbow.svg");
-  };
+  function changeBackgroundImage(image: string) {
+    setBackgroundImage(image);
+  }
 
   function showOneDropzone() {
     setShowSecondDropzone(false);
@@ -225,9 +193,7 @@ export default function HomePage() {
   function changeToOrange() {
     setBackgroundColor("#ff683b");
   }
-  // function changeToBlue() {
-  //   setBackgroundColor("#2596be");
-  // }
+
   function changeToRed() {
     setBackgroundColor("#dd4444");
   }
@@ -292,7 +258,7 @@ export default function HomePage() {
             <h1>Background image:</h1>
             <div className="flex-wrap flex gap-1.5">
               <Button
-                onClick={organizeBg}
+                onClick={() => changeBackgroundImage("/assets/ooorganize.svg")}
                 style={{
                   backgroundImage: `url("/assets/ooorganize.svg")`,
                   backgroundSize: "cover",
@@ -303,7 +269,7 @@ export default function HomePage() {
                 className="bg-transparent hover:bg-transparent border border-[#ddd]"
               ></Button>
               <Button
-                onClick={replicateBg}
+                onClick={() => changeBackgroundImage("/assets/rrreplicate.svg")}
                 style={{
                   backgroundImage: `url("/assets/rrreplicate.svg")`,
                   backgroundSize: "cover",
@@ -314,7 +280,7 @@ export default function HomePage() {
                 className="bg-transparent hover:bg-transparent border border-[#ddd]"
               ></Button>
               <Button
-                onClick={rainbowBg}
+                onClick={() => changeBackgroundImage("/assets/rrrainbow.svg")}
                 style={{
                   backgroundImage: `url("/assets/rrrainbow.svg")`,
                   backgroundSize: "cover",
@@ -325,7 +291,7 @@ export default function HomePage() {
                 className="bg-transparent hover:bg-transparent border border-[#ddd]"
               ></Button>
               <Button
-                onClick={scribbleBg}
+                onClick={() => changeBackgroundImage("/assets/ssscribble.svg")}
                 style={{
                   backgroundImage: `url("/assets/ssscribble.svg")`,
                   backgroundSize: "cover",
@@ -336,7 +302,7 @@ export default function HomePage() {
                 className="bg-transparent hover:bg-transparent border border-[#ddd]"
               ></Button>
               <Button
-                onClick={splashBg}
+                onClick={() => changeBackgroundImage("/assets/sssplatter.svg")}
                 style={{
                   backgroundImage: `url("/assets/sssplatter.svg")`,
                   backgroundSize: "cover",
@@ -347,7 +313,7 @@ export default function HomePage() {
                 className="bg-transparent hover:bg-transparent border border-[#ddd]"
               ></Button>
               <Button
-                onClick={repeatBg}
+                onClick={() => changeBackgroundImage("/assets/rrrepeat.svg")}
                 style={{
                   backgroundImage: `url("/assets/rrrepeat.svg")`,
                   backgroundSize: "cover",
@@ -359,7 +325,7 @@ export default function HomePage() {
               ></Button>
 
               <Button
-                onClick={oscillateBg}
+                onClick={() => changeBackgroundImage("/assets/oooscillate.svg")}
                 style={{
                   backgroundImage: `url("/assets/oooscillate.svg")`,
                   backgroundSize: "cover",
@@ -371,7 +337,7 @@ export default function HomePage() {
               ></Button>
 
               <Button
-                onClick={twinkleBg}
+                onClick={() => changeBackgroundImage("/assets/tttwinkle.svg")}
                 style={{
                   backgroundImage: `url("/assets/tttwinkle.svg")`,
                   backgroundSize: "cover",
@@ -383,7 +349,7 @@ export default function HomePage() {
               ></Button>
 
               <Button
-                onClick={spiralBg}
+                onClick={() => changeBackgroundImage("/assets/ssspiral.svg")}
                 style={{
                   backgroundImage: `url("/assets/ssspiral.svg")`,
                   backgroundSize: "cover",
