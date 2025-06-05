@@ -17,21 +17,9 @@ export default function HomePage() {
   const [showSecondDropzone, setShowSecondDropzone] = useState(false);
   const imageContainer = useRef<HTMLDivElement>(null);
 
-  const handleDownloadSnapshot = () => {
-    if (imageContainer.current && isImageLoaded) {
-      domtoimage
-        .toPng(imageContainer.current)
-        .then((dataUrl: string) => {
-          const link = document.createElement("a");
-          link.href = dataUrl;
-          link.download = "snapshot.png";
-          link.click();
-        })
-        .catch((error: unknown) => {
-          console.error("Error capturing image:", error);
-        });
-    }
-  };
+  function handleImageLoad() {
+    setIsImageLoaded(true);
+  }
 
   function changeBackgroundColor(color: string) {
     setBackgroundColor(color);
@@ -57,9 +45,21 @@ export default function HomePage() {
     setBoxShadow(shadow);
   }
 
-  function handleImageLoad() {
-    setIsImageLoaded(true);
-  }
+  const handleDownloadSnapshot = () => {
+    if (imageContainer.current && isImageLoaded) {
+      domtoimage
+        .toPng(imageContainer.current)
+        .then((dataUrl: string) => {
+          const link = document.createElement("a");
+          link.href = dataUrl;
+          link.download = "snapshot.png";
+          link.click();
+        })
+        .catch((error: unknown) => {
+          console.error("Error capturing image:", error);
+        });
+    }
+  };
 
   function handleResetImage() {
     setResetImage(true);
@@ -68,21 +68,8 @@ export default function HomePage() {
     }, 100);
   }
 
-  function noRounded() {
-    setBorderRadius(0);
-  }
-
-  function borderRadiusSmall() {
-    setBorderRadius(12);
-  }
-  function borderRadiusMedium() {
-    setBorderRadius(24);
-  }
-  function borderRadiusLarge() {
-    setBorderRadius(36);
-  }
-  function borderRadiusFull() {
-    setBorderRadius(999999);
+  function handleImageRadius(radius: number) {
+    setBorderRadius(radius);
   }
 
   function rotate0() {
@@ -420,6 +407,7 @@ export default function HomePage() {
           <Button onClick={handleResetImage}>Reset Image</Button>
         </div>
       </div>
+
       <div className="flex items-center justify-center w-[60%] p-12">
         <div
           ref={imageContainer}
@@ -479,17 +467,29 @@ export default function HomePage() {
         <div className="space-y-2">
           <h1>Rounded corner :</h1>
           <div className="flex-wrap flex gap-1.5">
-            <Button onClick={noRounded}>No Rounded</Button>
-            <Button onClick={borderRadiusSmall} active={borderRadius === 12}>
+            <Button onClick={() => handleImageRadius(0)}>No Rounded</Button>
+            <Button
+              onClick={() => handleImageRadius(12)}
+              active={borderRadius === 12}
+            >
               Small
             </Button>
-            <Button onClick={borderRadiusMedium} active={borderRadius === 24}>
+            <Button
+              onClick={() => handleImageRadius(24)}
+              active={borderRadius === 24}
+            >
               Medium
             </Button>
-            <Button onClick={borderRadiusLarge} active={borderRadius === 36}>
+            <Button
+              onClick={() => handleImageRadius(36)}
+              active={borderRadius === 36}
+            >
               Large
             </Button>
-            <Button onClick={borderRadiusFull} active={borderRadius === 999999}>
+            <Button
+              onClick={() => handleImageRadius(999999)}
+              active={borderRadius === 999999}
+            >
               Full
             </Button>
           </div>
