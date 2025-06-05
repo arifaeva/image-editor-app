@@ -76,19 +76,10 @@ export default function HomePage() {
     setRotate(deg);
   }
 
-  function noBorder() {
-    setBorder("");
+  function handleImageBorder(border: string) {
+    setBorder(border);
   }
 
-  function lightBorder() {
-    setBorder("2px solid white");
-  }
-  function mediumBorder() {
-    setBorder("4px solid white");
-  }
-  function largeBorder() {
-    setBorder("6px solid white");
-  }
   function translateXmin50() {
     setTranslate("translateX(-50%)");
   }
@@ -520,17 +511,23 @@ export default function HomePage() {
         <div className="space-y-2">
           <h1>Border image :</h1>
           <div className="flex-wrap flex gap-1">
-            <Button onClick={noBorder}>None</Button>
-            <Button onClick={lightBorder} active={border === "2px solid white"}>
+            <Button onClick={() => handleImageBorder("")}>None</Button>
+            <Button
+              onClick={() => handleImageBorder("2px solid white")}
+              active={border === "2px solid white"}
+            >
               Light
             </Button>
             <Button
-              onClick={mediumBorder}
+              onClick={() => handleImageBorder("4px solid white")}
               active={border === "4px solid white"}
             >
               Medium
             </Button>
-            <Button onClick={largeBorder} active={border === "6px solid white"}>
+            <Button
+              onClick={() => handleImageBorder("6px solid white")}
+              active={border === "6px solid white"}
+            >
               Large
             </Button>
           </div>
