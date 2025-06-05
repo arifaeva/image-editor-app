@@ -41,6 +41,10 @@ export default function HomePage() {
     }
   }
 
+  function changeBackgroundColor(color: string) {
+    setBackgroundColor(color);
+  }
+
   function changeBackgroundImage(image: string) {
     setBackgroundImage(image);
   }
@@ -48,6 +52,7 @@ export default function HomePage() {
   function showOneDropzone() {
     setShowSecondDropzone(false);
   }
+
   function showTwoDropzone() {
     setShowSecondDropzone(true);
   }
@@ -187,26 +192,6 @@ export default function HomePage() {
     setTranslate("translateX(50%) translateY(25%)");
   }
 
-  function changeToBlack() {
-    setBackgroundColor("#202124");
-  }
-  function changeToOrange() {
-    setBackgroundColor("#ff683b");
-  }
-
-  function changeToRed() {
-    setBackgroundColor("#dd4444");
-  }
-  function changeToCream() {
-    setBackgroundColor("#ffffff");
-  }
-  function changeToYellow() {
-    setBackgroundColor("#fbb14e");
-  }
-  function changeToLavender() {
-    setBackgroundColor("#6695f7");
-  }
-
   return (
     <div className="h-screen w-full flex justify-between gap-8 p-6 bg-[#3b4883]">
       <div className="bg-[#202124] w-[20%] p-8 flex flex-col justify-between rounded-xl gap-1 drop-shadow-2xl">
@@ -215,39 +200,37 @@ export default function HomePage() {
             <h1>Background color:</h1>
             <div className="flex-wrap flex gap-1.5">
               <Button
-                onClick={changeToBlack}
+                onClick={() => changeBackgroundColor("#202124")}
                 size="lg"
                 children={undefined}
                 className="bg-[#202124] hover:bg-[#202124] border border-[#ddd]"
               ></Button>
-
               <Button
-                onClick={changeToRed}
+                onClick={() => changeBackgroundColor("#dd4444")}
                 size="lg"
                 children={undefined}
                 className="bg-[#dd4444] hover:bg-[#dd4444] border border-[#ddd]"
               ></Button>
               <Button
-                onClick={changeToOrange}
+                onClick={() => changeBackgroundColor("#ff683b")}
                 size="lg"
                 children={undefined}
                 className="bg-[#ff683b] hover:bg-[#ff683b] border border-[#ddd]"
               ></Button>
               <Button
-                onClick={changeToYellow}
+                onClick={() => changeBackgroundColor("#f0be49")}
                 size="lg"
                 children={undefined}
                 className="bg-[#f0be49] hover:bg-[#f0be49] border border-[#ddd]"
               ></Button>
               <Button
-                onClick={changeToLavender}
+                onClick={() => changeBackgroundColor("#6695f7")}
                 size="lg"
                 children={undefined}
                 className="bg-[#6695f7] hover:bg-[#6695f7] border border-[#ddd]"
               ></Button>
-
               <Button
-                onClick={changeToCream}
+                onClick={() => changeBackgroundColor("#ffffff")}
                 size="lg"
                 children={undefined}
                 className="bg-[#ffffff] hover:bg-[#ffffff] border border-[#ddd]"
