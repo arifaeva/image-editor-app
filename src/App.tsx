@@ -49,12 +49,8 @@ export default function HomePage() {
     setBackgroundImage(image);
   }
 
-  function showOneDropzone() {
-    setShowSecondDropzone(false);
-  }
-
-  function showTwoDropzone() {
-    setShowSecondDropzone(true);
+  function showTwoDropzone(condition: boolean) {
+    setShowSecondDropzone(condition);
   }
 
   function handleImageLoad() {
@@ -363,14 +359,14 @@ export default function HomePage() {
             <h1>Images :</h1>
             <div className="flex flex-wrap gap-1.5">
               <Button
-                onClick={showOneDropzone}
+                onClick={() => showTwoDropzone(false)}
                 active={showSecondDropzone === false}
                 size="lg"
               >
                 1
               </Button>
               <Button
-                onClick={showTwoDropzone}
+                onClick={() => showTwoDropzone(true)}
                 active={showSecondDropzone === true}
                 size="sm"
                 className="h-10 w-10"
