@@ -80,50 +80,8 @@ export default function HomePage() {
     setBorder(border);
   }
 
-  function translateXmin50() {
-    setTranslate("translateX(-50%)");
-  }
-  function translateXmin25() {
-    setTranslate("translateX(-25%)");
-  }
-  function translate0() {
-    setTranslate("");
-  }
-  function translateX25() {
-    setTranslate("translateX(25%)");
-  }
-  function translateX50() {
-    setTranslate("translateX(50%)");
-  }
-  function translateXmin50Ymin25() {
-    setTranslate("translateX(-50%) translateY(-25%)");
-  }
-  function translateXmin25Ymin25() {
-    setTranslate("translateX(-25%) translateY(-25%)");
-  }
-  function translateYmin25() {
-    setTranslate("translateY(-25%)");
-  }
-  function translateX25Ymin25() {
-    setTranslate("translateX(25%) translateY(-25%)");
-  }
-  function translateX50Ymin25() {
-    setTranslate("translateX(50%) translateY(-25%)");
-  }
-  function translateXmin50Y25() {
-    setTranslate("translateX(-50%) translateY(25%)");
-  }
-  function translateXmin25Y25() {
-    setTranslate("translateX(-25%) translateY(25%)");
-  }
-  function translateY25() {
-    setTranslate("translateY(25%)");
-  }
-  function translateX25Y25() {
-    setTranslate("translateX(25%) translateY(25%)");
-  }
-  function translateX50Y25() {
-    setTranslate("translateX(50%) translateY(25%)");
+  function handleImageTranslation(translate: string) {
+    setTranslate(translate);
   }
 
   return (
@@ -539,31 +497,39 @@ export default function HomePage() {
             <div className="flex flex-wrap gap-1">
               <Button
                 size="sm"
-                onClick={translateXmin50Ymin25}
+                onClick={() =>
+                  handleImageTranslation("translateX(-50%) translateY(-25%)")
+                }
                 active={translate === "translateX(-50%) translateY(-25%)"}
                 children={undefined}
               ></Button>
               <Button
                 size="sm"
-                onClick={translateXmin25Ymin25}
+                onClick={() =>
+                  handleImageTranslation("translateX(-25%) translateY(-25%)")
+                }
                 active={translate === "translateX(-25%) translateY(-25%)"}
                 children={undefined}
               ></Button>
               <Button
                 size="sm"
-                onClick={translateYmin25}
+                onClick={() => handleImageTranslation("translateY(-25%)")}
                 active={translate === "translateY(-25%)"}
                 children={undefined}
               ></Button>
               <Button
                 size="sm"
-                onClick={translateX25Ymin25}
+                onClick={() =>
+                  handleImageTranslation("translateX(25%) translateY(-25%)")
+                }
                 active={translate === "translateX(25%) translateY(-25%)"}
                 children={undefined}
               ></Button>
               <Button
                 size="sm"
-                onClick={translateX50Ymin25}
+                onClick={() =>
+                  handleImageTranslation("translateX(50%) translateY(-25%)")
+                }
                 active={translate === "translateX(50%) translateY(-25%)"}
                 children={undefined}
               ></Button>
@@ -571,31 +537,31 @@ export default function HomePage() {
             <div className="flex flex-wrap gap-1">
               <Button
                 size="sm"
-                onClick={translateXmin50}
+                onClick={() => handleImageTranslation("translateX(-50%)")}
                 active={translate === "translateX(-50%)"}
                 children={undefined}
               ></Button>
               <Button
                 size="sm"
-                onClick={translateXmin25}
+                onClick={() => handleImageTranslation("translateX(-25%)")}
                 active={translate === "translateX(-25%)"}
                 children={undefined}
               ></Button>
               <Button
                 size="sm"
-                onClick={translate0}
+                onClick={() => handleImageTranslation("")}
                 active={translate === ""}
                 children={undefined}
               ></Button>
               <Button
                 size="sm"
-                onClick={translateX25}
+                onClick={() => handleImageTranslation("translateX(25%)")}
                 active={translate === "translateX(25%)"}
                 children={undefined}
               ></Button>
               <Button
                 size="sm"
-                onClick={translateX50}
+                onClick={() => handleImageTranslation("translateX(50%)")}
                 active={translate === "translateX(50%)"}
                 children={undefined}
               ></Button>
@@ -603,31 +569,39 @@ export default function HomePage() {
             <div className="flex flex-wrap gap-1">
               <Button
                 size="sm"
-                onClick={translateXmin50Y25}
+                onClick={() =>
+                  handleImageTranslation("translateX(-50%) translateY(25%)")
+                }
                 active={translate === "translateX(-50%) translateY(25%)"}
                 children={undefined}
               ></Button>
               <Button
                 size="sm"
-                onClick={translateXmin25Y25}
+                onClick={() =>
+                  handleImageTranslation("translateX(-25%) translateY(25%)")
+                }
                 active={translate === "translateX(-25%) translateY(25%)"}
                 children={undefined}
               ></Button>
               <Button
                 size="sm"
-                onClick={translateY25}
+                onClick={() => handleImageTranslation("translateY(25%)")}
                 active={translate === "translateY(25%)"}
                 children={undefined}
               ></Button>
               <Button
                 size="sm"
-                onClick={translateX25Y25}
+                onClick={() =>
+                  handleImageTranslation("translateX(25%) translateY(25%)")
+                }
                 active={translate === "translateX(25%) translateY(25%)"}
                 children={undefined}
               ></Button>
               <Button
                 size="sm"
-                onClick={translateX50Y25}
+                onClick={() =>
+                  handleImageTranslation("translateX(50%) translateY(25%)")
+                }
                 active={translate === "translateX(50%) translateY(25%)"}
                 children={undefined}
               ></Button>
