@@ -33,14 +33,6 @@ export default function HomePage() {
     }
   };
 
-  function handleBackgroundChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0];
-    if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setBackgroundImage(imageUrl);
-    }
-  }
-
   function changeBackgroundColor(color: string) {
     setBackgroundColor(color);
   }
@@ -51,6 +43,18 @@ export default function HomePage() {
 
   function showTwoDropzone(condition: boolean) {
     setShowSecondDropzone(condition);
+  }
+
+  function handleBackgroundChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setBackgroundImage(imageUrl);
+    }
+  }
+
+  function handleBoxShadow(shadow: string) {
+    setBoxShadow(shadow);
   }
 
   function handleImageLoad() {
@@ -111,22 +115,6 @@ export default function HomePage() {
 
   function largeBoxShadow() {
     setBoxShadow("10px 10px black");
-  }
-
-  function cardRightBoxShadow() {
-    setBoxShadow(
-      "rgba(249, 249, 249, 0.4) 5px 5px, rgba(249, 249, 249, 0.3) 10px 10px, rgba(249, 249, 249, 0.2) 15px 15px, rgba(249, 249, 249, 0.1) 20px 20px, rgba(249, 249, 249, 0.05) 25px 25px"
-    );
-  }
-  function cardLeftBoxShadow() {
-    setBoxShadow(
-      "rgba(249, 249, 249, 0.4) -5px 5px, rgba(249, 249, 249, 0.3) -10px 10px, rgba(249, 249, 249, 0.2) -15px 15px, rgba(249, 249, 249, 0.1) -20px 20px, rgba(249, 249, 249, 0.05) -25px 25px"
-    );
-  }
-  function cardBottomBoxShadow() {
-    setBoxShadow(
-      "rgba(249, 249, 249, 0.4) 0px 5px, rgba(249, 249, 249, 0.3) 0px 10px, rgba(249, 249, 249, 0.2) 0px 15px, rgba(249, 249, 249, 0.1) 0px 20px, rgba(249, 249, 249, 0.05) 0px 25px"
-    );
   }
 
   function noBorder() {
@@ -233,6 +221,7 @@ export default function HomePage() {
               ></Button>
             </div>
           </div>
+
           <div className="space-y-2">
             <h1>Background image:</h1>
             <div className="flex-wrap flex gap-1.5">
@@ -302,7 +291,6 @@ export default function HomePage() {
                 children={undefined}
                 className="bg-transparent hover:bg-transparent border border-[#ddd]"
               ></Button>
-
               <Button
                 onClick={() => changeBackgroundImage("/assets/oooscillate.svg")}
                 style={{
@@ -314,7 +302,6 @@ export default function HomePage() {
                 children={undefined}
                 className="bg-transparent hover:bg-transparent border border-[#ddd]"
               ></Button>
-
               <Button
                 onClick={() => changeBackgroundImage("/assets/tttwinkle.svg")}
                 style={{
@@ -326,7 +313,6 @@ export default function HomePage() {
                 children={undefined}
                 className="bg-transparent hover:bg-transparent border border-[#ddd]"
               ></Button>
-
               <Button
                 onClick={() => changeBackgroundImage("/assets/ssspiral.svg")}
                 style={{
@@ -375,15 +361,43 @@ export default function HomePage() {
               </Button>
             </div>
           </div>
+
           <div className="space-y-2">
             <h1>Layered Card Effect :</h1>
             <div className="flex-wrap flex gap-1.5">
-              <Button onClick={noShadow}>None</Button>
-
-              <Button onClick={cardLeftBoxShadow}>Left</Button>
-              <Button onClick={cardBottomBoxShadow}>Bottom</Button>
+              <Button onClick={() => handleBoxShadow("")}>None</Button>
               <Button
-                onClick={cardRightBoxShadow}
+                onClick={() =>
+                  handleBoxShadow(
+                    "rgba(249, 249, 249, 0.4) -5px 5px, rgba(249, 249, 249, 0.3) -10px 10px, rgba(249, 249, 249, 0.2) -15px 15px, rgba(249, 249, 249, 0.1) -20px 20px, rgba(249, 249, 249, 0.05) -25px 25px"
+                  )
+                }
+                active={
+                  boxShadow ===
+                  "rgba(249, 249, 249, 0.4) -5px 5px, rgba(249, 249, 249, 0.3) -10px 10px, rgba(249, 249, 249, 0.2) -15px 15px, rgba(249, 249, 249, 0.1) -20px 20px, rgba(249, 249, 249, 0.05) -25px 25px"
+                }
+              >
+                Left
+              </Button>
+              <Button
+                onClick={() =>
+                  handleBoxShadow(
+                    "rgba(249, 249, 249, 0.4) 0px 5px, rgba(249, 249, 249, 0.3) 0px 10px, rgba(249, 249, 249, 0.2) 0px 15px, rgba(249, 249, 249, 0.1) 0px 20px, rgba(249, 249, 249, 0.05) 0px 25px"
+                  )
+                }
+                active={
+                  boxShadow ===
+                  "rgba(249, 249, 249, 0.4) 0px 5px, rgba(249, 249, 249, 0.3) 0px 10px, rgba(249, 249, 249, 0.2) 0px 15px, rgba(249, 249, 249, 0.1) 0px 20px, rgba(249, 249, 249, 0.05) 0px 25px"
+                }
+              >
+                Bottom
+              </Button>
+              <Button
+                onClick={() =>
+                  handleBoxShadow(
+                    "rgba(249, 249, 249, 0.4) 5px 5px, rgba(249, 249, 249, 0.3) 10px 10px, rgba(249, 249, 249, 0.2) 15px 15px, rgba(249, 249, 249, 0.1) 20px 20px, rgba(249, 249, 249, 0.05) 25px 25px"
+                  )
+                }
                 active={
                   boxShadow ===
                   "rgba(249, 249, 249, 0.4) 5px 5px, rgba(249, 249, 249, 0.3) 10px 10px, rgba(249, 249, 249, 0.2) 15px 15px, rgba(249, 249, 249, 0.1) 20px 20px, rgba(249, 249, 249, 0.05) 25px 25px"
@@ -394,6 +408,7 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+
         <div className="flex-wrap flex gap-1.5 items-center justify-center">
           <Button
             onClick={handleDownloadSnapshot}
