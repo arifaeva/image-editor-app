@@ -72,20 +72,8 @@ export default function HomePage() {
     setBorderRadius(radius);
   }
 
-  function rotate0() {
-    setRotate("");
-  }
-
-  function rotate30() {
-    setRotate("rotate(30deg)");
-  }
-
-  function rotate45() {
-    setRotate("rotate(45deg)");
-  }
-
-  function rotate60() {
-    setRotate("rotate(60deg)");
+  function handleImageRotation(deg: string) {
+    setRotate(deg);
   }
 
   function noShadow() {
@@ -498,14 +486,23 @@ export default function HomePage() {
         <div className="space-y-2">
           <h1>Rotate image :</h1>
           <div className="flex-wrap flex gap-1.5">
-            <Button onClick={rotate0}>No Rotate</Button>
-            <Button onClick={rotate30} active={rotate === "rotate(30deg)"}>
+            <Button onClick={() => handleImageRotation("")}>No Rotate</Button>
+            <Button
+              onClick={() => handleImageRotation("rotate(30deg)")}
+              active={rotate === "rotate(30deg)"}
+            >
               30&deg;
             </Button>
-            <Button onClick={rotate45} active={rotate === "rotate(45deg)"}>
+            <Button
+              onClick={() => handleImageRotation("rotate(45deg)")}
+              active={rotate === "rotate(45deg)"}
+            >
               45&deg;
             </Button>
-            <Button onClick={rotate60} active={rotate === "rotate(60deg)"}>
+            <Button
+              onClick={() => handleImageRotation("rotate(60deg)")}
+              active={rotate === "rotate(60deg)"}
+            >
               60&deg;
             </Button>
           </div>
