@@ -76,22 +76,6 @@ export default function HomePage() {
     setRotate(deg);
   }
 
-  function noShadow() {
-    setBoxShadow("none");
-  }
-
-  function lightBoxShadow() {
-    setBoxShadow("5px 5px black");
-  }
-
-  function mediumBoxShadow() {
-    setBoxShadow("8px 8px black");
-  }
-
-  function largeBoxShadow() {
-    setBoxShadow("10px 10px black");
-  }
-
   function noBorder() {
     setBorder("");
   }
@@ -511,21 +495,21 @@ export default function HomePage() {
         <div className="space-y-2">
           <h1>Box Shadow :</h1>
           <div className="flex-wrap flex gap-1.5">
-            <Button onClick={noShadow}>None</Button>
+            <Button onClick={() => handleBoxShadow("none")}>None</Button>
             <Button
-              onClick={lightBoxShadow}
+              onClick={() => handleBoxShadow("5px 5px black")}
               active={boxShadow === "5px 5px black"}
             >
               Light
             </Button>
             <Button
-              onClick={mediumBoxShadow}
+              onClick={() => handleBoxShadow("8px 8px black")}
               active={boxShadow === "8px 8px black"}
             >
               Medium
             </Button>
             <Button
-              onClick={largeBoxShadow}
+              onClick={() => handleBoxShadow("10px 10px black")}
               active={boxShadow === "10px 10px black"}
             >
               Large
